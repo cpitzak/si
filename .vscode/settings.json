@@ -1,0 +1,25 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "html.format.wrapAttributes": "force-aligned",
+  "editor.autoIndent": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false
+  },
+  "editor.codeLens": false,
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "line",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "files.defaultLanguage": "typescript",
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 120,
+  "peacock.affectActivityBar": true,
+  "peacock.affectStatusBar": true,
+  "peacock.affectTitleBar": false
+}
