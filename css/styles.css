@@ -6,6 +6,12 @@
   flex-flow: row;
 }
 
+.logo {
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 15%;
+}
+
 #main > article {
   background: #dddd88;
   -webkit-flex: 3 1 60%;
