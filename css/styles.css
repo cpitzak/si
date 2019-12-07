@@ -21,7 +21,6 @@ a.active {
 .logo {
   padding-left: 10px;
   padding-top: 10px;
-  width: 15%;
 }
 
 #main > article {
@@ -84,6 +83,13 @@ header, footer {
   background-color: #a8c992;
 }
 
+@media (max-width: 768px) {
+  .logo {
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 50%;
+  }
+}
 @media all and (max-width: 640px) {
   #main, #page {
     margin-left: 10px;
@@ -98,5 +104,10 @@ header, footer {
   }
   #main > nav, #main > aside, header, footer {
     min-height: 50px;
+  }
+  .logo {
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 50%;
   }
 }
