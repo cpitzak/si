@@ -77,6 +77,14 @@ header, footer {
   color: white;
 }
 
+footer {
+  padding-left: 15px;
+}
+
+footer a:link, footer a:visited {
+  color: white;
+}
+
 .link-unit {
   display: block;
   min-height: 30px;
