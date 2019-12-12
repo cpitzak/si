@@ -4,40 +4,52 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
 
 <url>
   <loc>https://stockinspect.com/</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/pe_ratio.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/ps_ratio.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/market_cap.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/earnings_per_share.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/outstanding_shares.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://stockinspect.com/term/treasury_shares.html</loc>
-  <lastmod>2019-12-12T19:04:48+00:00</lastmod>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stockinspect.com/terms_of_use.html</loc>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://stockinspect.com/privacy_policy.html</loc>
+  <lastmod>2019-12-12T21:25:58+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
