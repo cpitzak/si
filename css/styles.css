@@ -11,7 +11,8 @@ a.active {
   font-weight: bold;
 }
 #main {
-  min-height: 800px;
+  /* min-height: 800px; */
+  min-height: calc(100vh - 266px);
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row;
@@ -72,7 +73,8 @@ a.active {
 
 header, footer {
   display: block;
-  min-height: 100px;
+  min-height: 103px;
+  max-height: 103px;
   background: #2e2e2e;
   color: white;
 }
@@ -85,9 +87,16 @@ footer a:link, footer a:visited {
   color: white;
 }
 
+footer ul {
+  margin: 0px;
+  padding: 10px;
+  list-style: none;
+}
+
 .link-unit {
   display: block;
   min-height: 30px;
+  max-height: 30px;
   background-color: #a8c992;
 }
 
