@@ -151,8 +151,15 @@ footer ul {
   border: 1px solid #ddd;
   padding: 8px;
 }
-.next-page {
+.next-nav {
+  display: flex;
+  justify-content: flex-end;
   font-size: 2em;
   font-weight: bold;
-  text-align: right;
+}
+.next-prev-nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+  font-weight: bold;
 }
