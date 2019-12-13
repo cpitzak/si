@@ -54,7 +54,7 @@ a.active {
   border-radius: 8px;
 }
 
-#main > nav > ul {
+#main > nav > ul, #main > nav > ul > li > ul {
   margin-top: 0px;
   padding-left: 20px;
   list-style: none;
@@ -150,4 +150,9 @@ footer ul {
 .fin-table td, .fin-table th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+.next-page {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: right;
 }
