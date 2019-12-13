@@ -1,4 +1,5 @@
 html, body {
+  
   overflow-x: hidden;
 }
 body {
@@ -140,4 +141,13 @@ footer ul {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+.fin-table {
+  border-collapse: collapse;
+}
+.fin-table tr:nth-child(even){background-color: #f2f2f2;}
+.fin-table tr:hover {background-color: #ddd;}
+.fin-table td, .fin-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
