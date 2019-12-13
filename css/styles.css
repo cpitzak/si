@@ -37,6 +37,7 @@ a.active {
   flex: 1 6 20%;
   -webkit-order: 1;
   order: 1;
+  margin-top: 20px;
 }
 
 .calculation {
@@ -61,6 +62,7 @@ a.active {
 }
 
 .nav-header {
+  font-weight: bold;
   padding-left: 18px;
   margin-bottom: 2px;
 }
