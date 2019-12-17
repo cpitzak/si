@@ -48,6 +48,17 @@ var tenk = {
       const depreciation = parseFloat(cashData[1][i]);
       const depreciationByGrossProfit = Math.round((depreciation / grossProfit) * 10000) / 100;
       results[4].push(depreciationByGrossProfit + '%');
+      // Interest Expenses / Operating Income
+      const interestExpenses = parseFloat(incomeData[9][i]);
+      const operatingIncome = parseFloat(incomeData[8][i]);
+      const interestExpensesByOperatingIncome = Math.round((interestExpenses / operatingIncome) * 10000) / 100;
+      results[5].push(interestExpensesByOperatingIncome + '%');
+      // Income Tax / Pretax Operating Income
+      const incomeTax = parseFloat(incomeData[11][i]);
+      const operatingExpenses = parseFloat(incomeData[7][i]);
+      const pretaxOperatingIncome = revenue - operatingExpenses - depreciation;
+      const incomeTaxByPretaxOperatingIncome = Math.round((incomeTax / pretaxOperatingIncome) * 10000) / 100;
+      results[6].push(incomeTaxByPretaxOperatingIncome + '%');
     }
   },
   buildTable: function(ticker, data) {
@@ -90,6 +101,8 @@ var tenk = {
       ['', 'SGA / Gross Profit', '< 80% is okayish; < 30% is great; consistent over time'],
       ['', 'R&D / Gross Profit', 'Depends; < 30% seems good'],
       ['', 'Depreciation / Gross Profit', '< 10%, but depends on industry'],
+      ['', 'Interest Expenses / Operating Income', 'Depends on industry; < 15% is good'],
+      ['', 'Income Tax / Pretax Operating Income', '~35%; anything else is a red flag'],
     ];
     tenk.addYearHeaders(incomeData, results);
     tenk.calcIncome(incomeData, balanceData, cashData, results);
