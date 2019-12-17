@@ -58,7 +58,29 @@ var tenk = {
       const operatingExpenses = parseFloat(incomeData[7][i]);
       const pretaxOperatingIncome = revenue - operatingExpenses - depreciation;
       const incomeTaxByPretaxOperatingIncome = Math.round((incomeTax / pretaxOperatingIncome) * 10000) / 100;
-      results[6].push(incomeTaxByPretaxOperatingIncome + '%');
+      // results[6].push(incomeTaxByPretaxOperatingIncome + '%');
+      results[6].push([]);
+      // Net Earnings
+      const netEarnings = parseFloat(incomeData[14][i]);
+      results[7].push((netEarnings / 1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+      // Net Earnings / Total Revenue
+      const netEarningsByRevenue = Math.round((netEarnings / revenue) * 10000) / 100;
+      results[8].push(netEarningsByRevenue + '%');
+      // EPS Diluted
+      const epsDiluted = parseFloat(incomeData[18][i]);
+      results[9].push(epsDiluted);
+      // Net Income / Total Assets
+      const netIncome = parseFloat(incomeData[14][i]);
+      const totalAssets = parseFloat(balanceData[12][i]);
+      const netIncomeByTotalAssets = Math.round((netIncome / totalAssets) * 10000) / 100;
+      if (isNaN(netIncomeByTotalAssets)) {
+        results[10].push(['N/A']);
+      } else {
+        results[10].push(netIncomeByTotalAssets + '%');
+      }
+      // Total Liabilities / (Shareholders Equity - Treasury Stock)
+      const totalLiabilities = parseFloat(balanceData[22][i]);
+      const shareholderEquity = parseFloat(balanceData[25][i]);
     }
   },
   buildTable: function(ticker, data) {
@@ -103,6 +125,11 @@ var tenk = {
       ['', 'Depreciation / Gross Profit', '< 10%, but depends on industry'],
       ['', 'Interest Expenses / Operating Income', 'Depends on industry; < 15% is good'],
       ['', 'Income Tax / Pretax Operating Income', '~35%; anything else is a red flag'],
+      ['Net Earnings', 'Net Earnings', 'Upward'],
+      ['', 'Net Earnings / Total Revenue', '> 20%; < 20% but > 10% could be treasure'],
+      ['', 'EPS Diluted', 'Consistent and Upward'],
+      ['Return on assets', 'Net Income / Total Assets', 'Low'],
+      ['', 'Total Liabilities / (Shareholders Equity - Treasury Stock)', '< 0.8'],
     ];
     tenk.addYearHeaders(incomeData, results);
     tenk.calcIncome(incomeData, balanceData, cashData, results);
