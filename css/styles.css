@@ -145,7 +145,7 @@ footer ul {
 	height: 100%;
 }
 .fin-table {
-  font-size: 0.9em;
+  font-size: 0.98em;
   border-collapse: collapse;
 }
 .fin-table tr:nth-child(even){background-color: #f2f2f2;}
