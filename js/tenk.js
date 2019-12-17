@@ -96,6 +96,15 @@ var tenk = {
       } else {
         results[13].push(netEarningsByShareholderEquity + '%');
       }
+      // Capital Expenditures / Net Earnings
+      const capitalExpenditures = parseFloat(cashData[4][i]);
+      const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
+      if (isNaN(capitalExpendituresByNetEarnings)) {
+        results[14].push([]);
+      } else {
+        results[14].push(capitalExpendituresByNetEarnings + '%');
+      }
+      results[15].push([]);
     }
   },
   buildTable: function(ticker, data) {
@@ -147,6 +156,8 @@ var tenk = {
       ['', 'Total Liabilities / (Shareholders Equity - Treasury Stock)', '< 0.8'],
       ['', 'Retained Earnings', 'Growing'],
       ['Return on Shareholders Equity', 'Net Earnings / Shareholders Equity', 'High'],
+      ['', 'Capital Expenditures / Net Earnings', '< 50%'],
+      ['Net Stock Buyback', '-Stock Issued - Stock Repurchased', 'Lots is a good sign; none is not bad; stock issuance may or may not be bad'],
     ];
     tenk.addYearHeaders(incomeData, results);
     tenk.calcIncome(incomeData, balanceData, cashData, results);
