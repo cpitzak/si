@@ -81,6 +81,21 @@ var tenk = {
       // Total Liabilities / (Shareholders Equity - Treasury Stock)
       const totalLiabilities = parseFloat(balanceData[22][i]);
       const shareholderEquity = parseFloat(balanceData[25][i]);
+      results[11].push([]);
+      // Retaining Earnings
+      const retainedEarnings = parseFloat(balanceData[24][i]);
+      if (isNaN(retainedEarnings)) {
+        results[12].push(['N/A']);
+      } else {
+        results[12].push((retainedEarnings / 1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+      }
+      // Net Earnings / Shareholder Equity
+      const netEarningsByShareholderEquity = Math.round((netEarnings / shareholderEquity) * 10000) / 100;
+      if (isNaN(netEarningsByShareholderEquity)) {
+        results[13].push(['N/A']);
+      } else {
+        results[13].push(netEarningsByShareholderEquity + '%');
+      }
     }
   },
   buildTable: function(ticker, data) {
@@ -130,6 +145,8 @@ var tenk = {
       ['', 'EPS Diluted', 'Consistent and Upward'],
       ['Return on assets', 'Net Income / Total Assets', 'Low'],
       ['', 'Total Liabilities / (Shareholders Equity - Treasury Stock)', '< 0.8'],
+      ['', 'Retained Earnings', 'Growing'],
+      ['Return on Shareholders Equity', 'Net Earnings / Shareholders Equity', 'High'],
     ];
     tenk.addYearHeaders(incomeData, results);
     tenk.calcIncome(incomeData, balanceData, cashData, results);
