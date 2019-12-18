@@ -67,21 +67,21 @@
       </div>
       <div id='main'>
             <article>
-                  <h1>Warren Buffett Calculator</h1>
-                  <label>
-                        <strong>Ticker: </strong>
-                  </label>
-                  <input id="ticker" type="text" size="5" onkeyup="tenk.onKeyUpCalc(event)" value="FB">
-                  <button type="button" onclick="tenk.calc(document.getElementById('ticker').value);">Calculate</button>
-                  <br/>
-                  <strong>Note: </strong> The calculation data is experimental and is most likely not accurate at the moment.
+                  <div class="buffett-calc">
+                        <label>
+                              <strong>Ticker: </strong>
+                        </label>
+                        <input id="ticker" type="text" size="5" onkeyup="tenk.onKeyUpCalc(event)" value="FB">
+                        <button type="button" onclick="tenk.calc(document.getElementById('ticker').value);">Calculate</button>
+                        <strong>Note: </strong> The calculation data is experimental and might be incorrect.
+                  </div>
                   <div id="result"></div>
             </article>
             <nav>
                   <span class="nav-header">TOOLS</span>
                   <ul>
                         <li>
-                              <a href="">Warren Buffett Calculator</a>
+                              <a class="active" href="/tools/warren_buffett_calculator.html">Warren Buffett Calculator</a>
                         </li>      
                   </ul>
                   <span class="nav-header">FUNDAMENTAL ANALYSIS</span>

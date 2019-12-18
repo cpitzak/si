@@ -137,7 +137,7 @@ var tenk = {
     }
   },
   buildTable: function (ticker, data) {
-    document.getElementById('result').innerHTML = '<h3>' + ticker.toUpperCase() + ' Calculations</h3>';
+    document.getElementById('result').innerHTML = '';
     const table = document.createElement('table');
     table.className = 'fin-table';
     const thead = document.createElement('thead');

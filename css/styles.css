@@ -145,7 +145,7 @@ footer ul {
 	height: 100%;
 }
 .fin-table {
-  font-size: 0.98em;
+  font-size: 0.9em;
   border-collapse: collapse;
 }
 .fin-table tr:nth-child(even){background-color: #f2f2f2;}
@@ -165,4 +165,8 @@ footer ul {
   justify-content: space-between;
   font-size: 2em;
   font-weight: bold;
+}
+.buffett-calc {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
