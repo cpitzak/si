@@ -1,31 +1,4 @@
 var tenk = {
-  // 
-  // 
-  // 
-  // 
-  // 
-  // 
-  // Net Income - Non-Controlling int
-  // Net Income - Discontinued ops
-  // 
-  // Preferred Dividends
-  // Net Income Com
-  // EPS
-  // 
-  // Weighted Average Shs Out
-  // Weighted Average Shs Out (Dil)
-  // Dividend per Share
-  // Gross Margin
-  // EBITDA Margin
-  // EBIT Margin
-  // Profit Margin
-  // Free Cash Flow margin
-  // EBITDA
-  // EBIT
-  // Consolidated Income
-  // Earnings Before Tax Margin
-  // Net Profit Margin
-
   incomeConstants: {
     DATE: 'Date',
     REVENUE: 'Revenue',
@@ -80,11 +53,10 @@ var tenk = {
       results[0].push(date);
     }
   },
-  calcIncome: function (incomeData, balanceData, cashData, results) {
+  runCalcs: function (incomeData, balanceData, cashData, results) {
     if (!incomeData || !results) {
       return;
     }
-
     for (let i = 1; i < incomeData[tenk.incomeConstants.DATE].length; i++) {
       // gross profit margin
       const revenue = parseFloat(incomeData[tenk.incomeConstants.REVENUE][i]);
@@ -217,7 +189,7 @@ var tenk = {
       ['-Stock Issued - Stock Repurchased', 'Lots is a good sign; none is not bad; stock issuance may or may not be bad'],
     ];
     tenk.addYearHeaders(incomeData, results);
-    tenk.calcIncome(incomeData, balanceData, cashData, results);
+    tenk.runCalcs(incomeData, balanceData, cashData, results);
     tenk.buildTable(ticker, results);
   },
   onKeyUpCalc: async function (event) {
