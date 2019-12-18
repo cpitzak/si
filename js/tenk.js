@@ -199,22 +199,22 @@ var tenk = {
     const balanceData = await tenk.load(balanceUrl);
     const cashData = await tenk.load(cashUrl);
     const results = [
-      ['Name', 'Computation', 'Desired'],
-      ['Gross Profit Margin', '(Revenue - COGS) / Revenue', '> 40% for past 10 years'],
-      ['', 'SGA / Gross Profit', '< 80% is okayish; < 30% is great; consistent over time'],
-      ['', 'R&D / Gross Profit', 'Depends; < 30% seems good'],
-      ['', 'Depreciation / Gross Profit', '< 10%, but depends on industry'],
-      ['', 'Interest Expenses / Operating Income', 'Depends on industry; < 15% is good'],
-      ['', 'Income Tax / Pretax Operating Income', '~35%; anything else is a red flag'],
-      ['Net Earnings', 'Net Earnings', 'Upward'],
-      ['', 'Net Earnings / Total Revenue', '> 20%; < 20% but > 10% could be treasure'],
-      ['', 'EPS Diluted', 'Consistent and Upward'],
-      ['Return on assets', 'Net Income / Total Assets', 'Low'],
-      ['', 'Total Liabilities / (Shareholders Equity - Treasury Stock)', '< 0.8'],
-      ['', 'Retained Earnings', 'Growing'],
-      ['Return on Shareholders Equity', 'Net Earnings / Shareholders Equity', 'High'],
-      ['', 'Capital Expenditures / Net Earnings', '< 50%'],
-      ['Net Stock Buyback', '-Stock Issued - Stock Repurchased', 'Lots is a good sign; none is not bad; stock issuance may or may not be bad'],
+      ['Computation', 'Desired'],
+      ['(Revenue - COGS) / Revenue', '> 40% for past 10 years'],
+      ['SGA / Gross Profit', '< 80% is okayish; < 30% is great; consistent over time'],
+      ['R&D / Gross Profit', 'Depends; < 30% seems good'],
+      ['Depreciation / Gross Profit', '< 10%, but depends on industry'],
+      ['Interest Expenses / Operating Income', 'Depends on industry; < 15% is good'],
+      ['Income Tax / Pretax Operating Income', '~35%; anything else is a red flag'],
+      ['Net Earnings', 'Upward'],
+      ['Net Earnings / Total Revenue', '> 20%; < 20% but > 10% could be treasure'],
+      ['EPS Diluted', 'Consistent and Upward'],
+      ['Net Income / Total Assets', 'Low'],
+      ['Total Liabilities / (Shareholders Equity - Treasury Stock)', '< 0.8'],
+      ['Retained Earnings', 'Growing'],
+      ['Net Earnings / Shareholders Equity', 'High'],
+      ['Capital Expenditures / Net Earnings', '< 50%'],
+      ['-Stock Issued - Stock Repurchased', 'Lots is a good sign; none is not bad; stock issuance may or may not be bad'],
     ];
     tenk.addYearHeaders(incomeData, results);
     tenk.calcIncome(incomeData, balanceData, cashData, results);
