@@ -1,14 +1,69 @@
 var tenk = {
-  load: async function(url) {
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
+  // Net Income - Non-Controlling int
+  // Net Income - Discontinued ops
+  // 
+  // Preferred Dividends
+  // Net Income Com
+  // EPS
+  // 
+  // Weighted Average Shs Out
+  // Weighted Average Shs Out (Dil)
+  // Dividend per Share
+  // Gross Margin
+  // EBITDA Margin
+  // EBIT Margin
+  // Profit Margin
+  // Free Cash Flow margin
+  // EBITDA
+  // EBIT
+  // Consolidated Income
+  // Earnings Before Tax Margin
+  // Net Profit Margin
+
+  incomeConstants: {
+    DATE: 'Date',
+    REVENUE: 'Revenue',
+    REVENUE_GROWTH: 'Revenue Growth',
+    COST_OF_REVENUE: 'Cost of Revenue',
+    GROSS_PROFIT: 'Gross Profit',
+    RD_EXPENSES: 'R&D Expenses',
+    SGA_EXPENSE: 'SG&A Expense',
+    OPERATING_EXPENSES: 'Operating Expenses',
+    OPERATING_INCOME: 'Operating Income',
+    INTEREST_EXPENSE: 'Interest Expense',
+    EARNINGS_BEFORE_TAX: 'Earnings before Tax',
+    INCOME_TAX_EXPENSE: 'Income Tax Expense',
+    NET_INCOME: 'Net Income',
+    EPS_DILUTED: 'EPS Diluted'
+  },
+  cashConstants: {
+    DEPRECIATION_AMORTIZATION: 'Depreciation & Amortization',
+    CAPITAL_EXPENDITURE: 'Capital Expenditure'
+  },
+  balanceConstants: {
+    TAX_ASSETS: 'Tax assets',
+    TOTAL_ASSETS: 'Total assets',
+    TOTAL_LIABILITIES: 'Tax Liabilities',
+    SHAREHOLDER_EQUITY: 'Total shareholders equity',
+    RETAINED_EARNINGS: 'Retained earnings (deficit)'
+  },
+  load: async function (url) {
     if (!url) {
       return;
     }
     try {
       const t = await fetch(url).then(r => r.text());
       const lines = t.split('\n');
-      const data = [];
+      const data = {};
       for (let i = 0; i < lines.length; i++) {
-        data.push(lines[i].split(','));
+        const temp = lines[i].split(',');
+        data[temp[0]] = temp;
       }
       return data;
     } catch (err) {
@@ -16,62 +71,64 @@ var tenk = {
       return [];
     }
   },
-  addYearHeaders: function(data, results) {
+  addYearHeaders: function (data, results) {
     if (!data || !results) {
       return;
     }
-    for (let i = 1; i < data[0].length; i++) {
-      results[0].push(data[0][i]);
+    for (let i = 1; i < data[tenk.incomeConstants.DATE].length; i++) {
+      const date = data[tenk.incomeConstants.DATE][i];
+      results[0].push(date);
     }
   },
-  calcIncome: function(incomeData, balanceData, cashData, results) {
+  calcIncome: function (incomeData, balanceData, cashData, results) {
     if (!incomeData || !results) {
       return;
     }
-    for (let i = 1; i < incomeData[0].length; i++) {
+
+    for (let i = 1; i < incomeData[tenk.incomeConstants.DATE].length; i++) {
       // gross profit margin
-      const revenue = parseFloat(incomeData[1][i]);
-      const cogs = parseFloat(incomeData[3][i]);
+      const revenue = parseFloat(incomeData[tenk.incomeConstants.REVENUE][i]);
+      const cogs = parseFloat(incomeData[tenk.incomeConstants.COST_OF_REVENUE][i]);
       const grossProftMargin = (revenue - cogs) / revenue;
       const gpmPercent = Math.round(grossProftMargin * 10000) / 100;
       results[1].push(gpmPercent + '%');
       // SGA / Gross Profit
-      const sga = parseFloat(incomeData[6][i]);
-      const grossProfit = parseFloat(incomeData[4][i]);
+      const sga = parseFloat(incomeData[tenk.incomeConstants.SGA_EXPENSE][i]);
+      const grossProfit = parseFloat(incomeData[tenk.incomeConstants.GROSS_PROFIT][i]);
       const sgaByGrossProfit = Math.round((sga / grossProfit) * 10000) / 100;
       results[2].push(sgaByGrossProfit + '%');
       // R&D / Gross Profit
-      const rd = parseFloat(incomeData[5][i]);
+      const rd = parseFloat(incomeData[tenk.incomeConstants.RD_EXPENSES][i]);
       const rdByGrossProfit = Math.round((rd / grossProfit) * 10000) / 100;
       results[3].push(rdByGrossProfit + '%');
       // Depreciation / Gross Profit
-      const depreciation = parseFloat(cashData[1][i]);
+      const depreciation = parseFloat(cashData[tenk.cashConstants.DEPRECIATION_AMORTIZATION][i]);
       const depreciationByGrossProfit = Math.round((depreciation / grossProfit) * 10000) / 100;
       results[4].push(depreciationByGrossProfit + '%');
       // Interest Expenses / Operating Income
-      const interestExpenses = parseFloat(incomeData[9][i]);
-      const operatingIncome = parseFloat(incomeData[8][i]);
+      const interestExpenses = parseFloat(incomeData[tenk.incomeConstants.INTEREST_EXPENSE][i]);
+      const operatingIncome = parseFloat(incomeData[tenk.incomeConstants.OPERATING_INCOME][i]);
       const interestExpensesByOperatingIncome = Math.round((interestExpenses / operatingIncome) * 10000) / 100;
       results[5].push(interestExpensesByOperatingIncome + '%');
       // Income Tax / Pretax Operating Income
-      const incomeTax = parseFloat(incomeData[11][i]);
-      const operatingExpenses = parseFloat(incomeData[7][i]);
+      const incomeTax = parseFloat(incomeData[tenk.incomeConstants.INCOME_TAX_EXPENSE][i]);
+      const operatingExpenses = parseFloat(incomeData[tenk.incomeConstants.OPERATING_EXPENSES][i]);
       const pretaxOperatingIncome = revenue - operatingExpenses - depreciation;
       const incomeTaxByPretaxOperatingIncome = Math.round((incomeTax / pretaxOperatingIncome) * 10000) / 100;
       // results[6].push(incomeTaxByPretaxOperatingIncome + '%');
       results[6].push([]);
       // Net Earnings
-      const netEarnings = parseFloat(incomeData[14][i]);
+      const netEarnings = parseFloat(incomeData[tenk.incomeConstants.NET_INCOME][i]);
       results[7].push((netEarnings / 1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
       // Net Earnings / Total Revenue
       const netEarningsByRevenue = Math.round((netEarnings / revenue) * 10000) / 100;
       results[8].push(netEarningsByRevenue + '%');
       // EPS Diluted
-      const epsDiluted = parseFloat(incomeData[18][i]);
+      const epsDiluted = parseFloat(incomeData[tenk.incomeConstants.EPS_DILUTED][i]);
       results[9].push(epsDiluted);
       // Net Income / Total Assets
-      const netIncome = parseFloat(incomeData[14][i]);
-      const totalAssets = parseFloat(balanceData[12][i]);
+      const netIncome = parseFloat(incomeData[tenk.incomeConstants.NET_INCOME][i]);
+      const totalAssets = parseFloat(balanceData[tenk.balanceConstants.TOTAL_ASSETS][i]);
       const netIncomeByTotalAssets = Math.round((netIncome / totalAssets) * 10000) / 100;
       if (isNaN(netIncomeByTotalAssets)) {
         results[10].push(['N/A']);
@@ -79,11 +136,11 @@ var tenk = {
         results[10].push(netIncomeByTotalAssets + '%');
       }
       // Total Liabilities / (Shareholders Equity - Treasury Stock)
-      const totalLiabilities = parseFloat(balanceData[22][i]);
-      const shareholderEquity = parseFloat(balanceData[25][i]);
+      const totalLiabilities = parseFloat(balanceData[tenk.balanceConstants.TOTAL_LIABILITIES][i]);
+      const shareholderEquity = parseFloat(balanceData[tenk.balanceConstants.SHAREHOLDER_EQUITY][i]);
       results[11].push([]);
       // Retaining Earnings
-      const retainedEarnings = parseFloat(balanceData[24][i]);
+      const retainedEarnings = parseFloat(balanceData[tenk.balanceConstants.RETAINED_EARNINGS][i]);
       if (isNaN(retainedEarnings)) {
         results[12].push(['N/A']);
       } else {
@@ -97,7 +154,7 @@ var tenk = {
         results[13].push(netEarningsByShareholderEquity + '%');
       }
       // Capital Expenditures / Net Earnings
-      const capitalExpenditures = parseFloat(cashData[4][i]);
+      const capitalExpenditures = parseFloat(cashData[tenk.cashConstants.CAPITAL_EXPENDITURE][i]);
       const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
       if (isNaN(capitalExpendituresByNetEarnings)) {
         results[14].push([]);
@@ -107,7 +164,7 @@ var tenk = {
       results[15].push([]);
     }
   },
-  buildTable: function(ticker, data) {
+  buildTable: function (ticker, data) {
     document.getElementById('result').innerHTML = '<h3>' + ticker.toUpperCase() + ' Calculations</h3>';
     const table = document.createElement('table');
     table.className = 'fin-table';
@@ -131,7 +188,7 @@ var tenk = {
     }
     document.getElementById('result').appendChild(table);
   },
-  calc: async function(ticker) {
+  calc: async function (ticker) {
     if (!ticker) {
       return;
     }
@@ -163,7 +220,7 @@ var tenk = {
     tenk.calcIncome(incomeData, balanceData, cashData, results);
     tenk.buildTable(ticker, results);
   },
-  onKeyUpCalc: async function(event) {
+  onKeyUpCalc: async function (event) {
     if (event.keyCode === 13) {
       tenk.calc(document.getElementById('ticker').value);
     }
