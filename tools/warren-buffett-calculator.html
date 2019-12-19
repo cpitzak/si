@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Stock Inspect - Understand How to Analyze Companies</title>
+      <title>Stock Inspect - Warren Buffett Calculator</title>
       <meta name="viewport"
             content="width=device-width, initial-scale=1.0">
       <meta http-equiv="Cache-Control"
@@ -48,6 +48,12 @@
 
             gtag('config', 'UA-154081727-1');
       </script>
+      <script src="/js/tenk.js"></script>
+      <script type="text/javascript">
+            window.addEventListener('load', function () {
+                  tenk.calc(document.getElementById('ticker').value);
+            });
+      </script>
 </head>
 
 <body>
@@ -61,19 +67,15 @@
       </div>
       <div id='main'>
             <article>
-                  <h1>Getting Started with Stock Inspect</h1>
-                  <p>
-                        Start by reading through the terms on the left. It's best to start with the first term <a
-                           href="/term/pe-ratio.html">P/E Ratio</a> and
-                        follow each link on that page as you study. Then continue from there to the next term <a
-                           href="/term/ps-ratio.html">P/S Ratio</a>.
-                  </p>
-                  <p>
-                        Don't continue to the next term until you fully understand the meaning of each one. If you're
-                        having trouble finding what you're looking for
-                        then please use our search located on the right. Enjoy your journey in learning how to inspect
-                        stocks.
-                  </p>
+                  <div class="buffett-calc">
+                        <label>
+                              <strong>Ticker: </strong>
+                        </label>
+                        <input id="ticker" type="text" size="5" onkeyup="tenk.onKeyUpCalc(event)" value="FB">
+                        <button type="button" onclick="tenk.calc(document.getElementById('ticker').value);">Calculate</button>
+                        <strong>Note: </strong> The calculation data is experimental and might be incorrect.
+                  </div>
+                  <div id="result"></div>
             </article>
             <nav>
                   <span class="nav-header">TOOLS</span>
@@ -82,7 +84,7 @@
                               <a href="/tools/compound-interest.html">Compound Interest Calculator</a>
                         </li>
                         <li>
-                              <a href="/tools/warren-buffett-calculator.html">Warren Buffett Calculator</a>
+                              <a class="active" href="/tools/warren-buffett-calculator.html">Warren Buffett Calculator</a>
                         </li>      
                   </ul>
                   <span class="nav-header">FUNDAMENTAL ANALYSIS</span>

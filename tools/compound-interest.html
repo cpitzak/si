@@ -34,7 +34,9 @@
       <meta name="theme-color"
             content="#ffffff">
       <meta name="description"
-      content="Stock Inspect is a source of information for understanding stocks and how to analyze them.">
+            content="This is a free online compound interest calculator.">
+      <meta name="keywords"
+            content="compound,interest,calculator,free,online">
       <script data-ad-client="ca-pub-3383826651059118"
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -48,18 +50,15 @@
 
             gtag('config', 'UA-154081727-1');
       </script>
-      <script src="/js/tenk.js"></script>
-      <script type="text/javascript">
-            window.addEventListener('load', function () {
-                  tenk.calc(document.getElementById('ticker').value);
-            });
-      </script>
+      <script src="/js/compound.js"></script>
 </head>
 
 <body>
       <header>
             <a href="/">
-                  <img class="logo" src="/img/logo.png" alt="StockInspect">
+                  <img class="logo"
+                       src="/img/logo.png"
+                       alt="StockInspect">
             </a>
       </header>
       <div class="link-unit">
@@ -67,22 +66,79 @@
       </div>
       <div id='main'>
             <article>
-                  <div class="buffett-calc">
-                        <label>
-                              <strong>Ticker: </strong>
-                        </label>
-                        <input id="ticker" type="text" size="5" onkeyup="tenk.onKeyUpCalc(event)" value="FB">
-                        <button type="button" onclick="tenk.calc(document.getElementById('ticker').value);">Calculate</button>
-                        <strong>Note: </strong> The calculation data is experimental and might be incorrect.
-                  </div>
-                  <div id="result"></div>
+                  <h1>Compound Interest Calculator</h1>
+                  <form name="compoundForm"
+                        action="compound.calc()"
+                        method="POST">
+                        <table>
+                              <tr>
+                                    <td>
+                                          Current Principal ($):
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <input type="text" name="principal" onchange="value=compound.formatNumber(value, 2, 0)">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Yearly Additions ($):
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <input type="text" name="additions" onchange="value=compound.formatNumber(value, 2, 0)">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Years to Save:
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <input type="text" name="years" onchange="value=compound.value(value, 2, 1)">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Interest Rate (%)
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <input type="text" name="interest" onchange="value=compound.value(value, 2, -100)">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Run Calculation
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <input type="button" style="width:175px" value="Calculate" onClick="compound.calc()">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <strong>Result: </strong> <span id="result">Press Calculate</span>
+                                    </td>
+                              </tr>
+                        </table>
+                  </form>
             </article>
             <nav>
                   <span class="nav-header">TOOLS</span>
                   <ul>
                         <li>
-                              <a class="active" href="/tools/warren_buffett_calculator.html">Warren Buffett Calculator</a>
-                        </li>      
+                              <a class="active"
+                                 href="/tools/compound-interest.html">Compound Interest Calculator</a>
+                        </li>
+                        <li>
+                              <a href="/tools/warren-buffett-calculator.html">Warren Buffett Calculator</a>
+                        </li>
                   </ul>
                   <span class="nav-header">FUNDAMENTAL ANALYSIS</span>
                   <ul>
