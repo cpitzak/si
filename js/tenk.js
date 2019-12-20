@@ -39,7 +39,9 @@ var tenk = {
           lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
         }
         const temp = lines[i].split(',');
-        data[temp[0]] = temp;
+        if (temp.length > 1) {
+          data[temp[0]] = temp;
+        }
       }
       return data;
     } catch (err) {

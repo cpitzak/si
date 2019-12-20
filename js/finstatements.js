@@ -12,7 +12,9 @@ var statements = {
           lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
         }
         const temp = lines[i].split(',');
-        data.push(temp);
+        if (temp.length > 1) {
+          data.push(temp);
+        }
       }
       return data;
     } catch (err) {
@@ -20,15 +22,6 @@ var statements = {
       return [];
     }
   },
-  // addYearHeaders: function (data, results) {
-  //   if (!data || !results) {
-  //     return;
-  //   }
-  //   for (let i = 1; i < data[tenk.incomeConstants.DATE].length; i++) {
-  //     const date = data[tenk.incomeConstants.DATE][i];
-  //     results[0].push(date);
-  //   }
-  // },
   numberWithCommas: function(x) {
       var parts = x.toString().split(".");
       parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -93,13 +86,5 @@ var statements = {
     if (data.length > 0 && data.length !== 15) {
       statements.buildTable(data, ticker, text);
     }
-    // tenk.addYearHeaders(incomeData, results);
-    // tenk.runCalcs(incomeData, balanceData, cashData, results);
-    // tenk.buildTable(ticker, results);
   },
-  // onKeyUpCalc: async function (event) {
-  //   if (event.keyCode === 13) {
-  //     tenk.calc(document.getElementById('ticker').value);
-  //   }
-  // }
 };
