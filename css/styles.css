@@ -11,6 +11,11 @@ a {
 a.active {
   font-weight: bold;
 }
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
 #main {
   /* min-height: 800px; */
   min-height: calc(100vh - 266px);
