@@ -65,6 +65,11 @@ var compound = {
       }
     }
   },
+  numberWithCommas: function(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  },
   calc: function () {
     compound.zeroBlanks(document.compoundForm);
     const principal = compound.value(document.compoundForm.principal.value);
@@ -74,6 +79,6 @@ var compound = {
     const frequency = 1;
     let value = compound.calcCompound(principal, interest / frequency, years * frequency, additions / frequency);
     value = Math.round((value) * 100) / 100;
-    document.getElementById('result').innerHTML = '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('result').innerHTML = '$' + numberWithCommas(value);
   }
 };

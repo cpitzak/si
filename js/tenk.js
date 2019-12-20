@@ -35,6 +35,9 @@ var tenk = {
       const lines = t.split('\n');
       const data = {};
       for (let i = 0; i < lines.length; i++) {
+        if (lines[i].indexOf('Property, Plant & Equipment Net') > -1) {
+          lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
+        }
         const temp = lines[i].split(',');
         data[temp[0]] = temp;
       }

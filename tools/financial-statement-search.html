@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Stock Inspect - Warren Buffett Calculator</title>
+      <title>Stock Inspect - Financial Statements</title>
       <meta name="viewport"
             content="width=device-width, initial-scale=1.0">
       <meta http-equiv="Cache-Control"
@@ -34,7 +34,9 @@
       <meta name="theme-color"
             content="#ffffff">
       <meta name="description"
-      content="Stock Inspect is a source of information for understanding stocks and how to analyze them.">
+            content="This shows income statements, balance sheets, and cash flows for stocks.">
+      <meta name="keywords"
+            content="financial statements,income,balance,cash">
       <script data-ad-client="ca-pub-3383826651059118"
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -48,10 +50,10 @@
 
             gtag('config', 'UA-154081727-1');
       </script>
-      <script src="/js/tenk.js"></script>
+      <script src="/js/finstatements.js"></script>
       <script type="text/javascript">
             window.addEventListener('load', function () {
-                  tenk.calc(document.getElementById('ticker').value);
+                  statements.loadTable('i');
             });
       </script>
 </head>
@@ -59,7 +61,9 @@
 <body>
       <header>
             <a href="/">
-                  <img class="logo" src="/img/logo.png" alt="StockInspect">
+                  <img class="logo"
+                       src="/img/logo.png"
+                       alt="StockInspect">
             </a>
       </header>
       <div class="link-unit">
@@ -67,33 +71,39 @@
       </div>
       <div id='main'>
             <article>
-                  <div class="buffett-calc">
-                        <label>
-                              <strong>Ticker: </strong>
-                        </label>
-                        <input id="ticker" type="text" size="5" onkeyup="tenk.onKeyUpCalc(event)" value="FB">
-                        <button type="button" onclick="tenk.calc(document.getElementById('ticker').value);">Calculate</button>
-                        <strong>Note: </strong> The calculation data is experimental and might be incorrect.<br/>
-                        The equations in these calculations come from the book:
-                        <a href="https://www.amazon.com/Warren-Buffett-Interpretation-Financial-Statements/dp/1849833192/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1576255810&sr="
-                        target="_blank">
-                              Warren Buffett and the Interpretation of Financial Statements
-                        </a>
-                  </div>
-                  <div id="result"></div>
+                  <h1 id="title">Financial Statements</h1>
+                  Ticker: <input id="ticker" type="text" value="FB">
+                  <ul class="fin-statements-menu">
+                        <li>
+                              <a id="income-link" class="active" href="javascript:statements.loadTable('i');">Income Statement</a>
+                        </li>
+                        <li>
+                              <strong>|</strong>
+                        </li>
+                        <a>
+                              <a id="balance-link" href="javascript:statements.loadTable('b');">Balance Sheet</a>
+                        </li>
+                        <li>
+                              <strong>|</strong>
+                        </li>
+                        <li>
+                              <a id="cash-link" href="javascript:statements.loadTable('c');">Cash Flow</a>
+                        </li>
+                  </ul>
+                  <div id="table"></div>
             </article>
             <nav>
                   <span class="nav-header">TOOLS</span>
                   <ul>
                         <li>
-                              <a href="/tools/financial-statement-search.html">Financial Statement Search</a>
+                              <a class="active" href="/tools/financial-statement-search.html">Financial Statement Search</a>
                         </li>
                         <li>
                               <a href="/tools/compound-interest.html">Compound Interest Calculator</a>
                         </li>
                         <li>
-                              <a class="active" href="/tools/warren-buffett-calculator.html">Warren Buffett Calculator</a>
-                        </li>      
+                              <a href="/tools/warren-buffett-calculator.html">Warren Buffett Calculator</a>
+                        </li>
                   </ul>
                   <span class="nav-header">FUNDAMENTAL ANALYSIS</span>
                   <ul>

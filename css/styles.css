@@ -170,3 +170,7 @@ footer ul {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.fin-statements-menu li {
+  display: inline;
+  list-style-type: none;
+}
