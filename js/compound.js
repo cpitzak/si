@@ -79,6 +79,6 @@ var compound = {
     const frequency = 1;
     let value = compound.calcCompound(principal, interest / frequency, years * frequency, additions / frequency);
     value = Math.round((value) * 100) / 100;
-    document.getElementById('result').innerHTML = '$' + numberWithCommas(value);
+    document.getElementById('result').innerHTML = '$' + compound.numberWithCommas(value);
   }
 };
