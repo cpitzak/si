@@ -16,7 +16,7 @@ var tenk = {
   },
   cashConstants: {
     DEPRECIATION_AMORTIZATION: 'depreciationAndAmortization',
-    CAPITAL_EXPENDITURE: 'Capital Expenditure'
+    CAPITAL_EXPENDITURE: 'capitalExpenditure'
   },
   balanceConstants: {
     TAX_ASSETS: 'taxAssets',
@@ -147,13 +147,13 @@ var tenk = {
         results[13].push(netEarningsByShareholderEquity + '%');
       }
       // Capital Expenditures / Net Earnings
-      // const capitalExpenditures = parseFloat(cashData[tenk.cashConstants.CAPITAL_EXPENDITURE][i]);
-      // const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
-      // if (isNaN(capitalExpendituresByNetEarnings)) {
+      const capitalExpenditures = parseFloat(cashData[tenk.cashConstants.CAPITAL_EXPENDITURE][i]);
+      const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
+      if (isNaN(capitalExpendituresByNetEarnings)) {
         results[14].push(['no data']);
-      // } else {
-      //   results[14].push(capitalExpendituresByNetEarnings + '%');
-      // }
+      } else {
+        results[14].push(capitalExpendituresByNetEarnings + '%');
+      }
       results[15].push([]);
     }
   },
