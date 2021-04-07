@@ -4,7 +4,15 @@ var statements = {
       return;
     }
     try {
-      const t = await fetch(url).then(r => r.text());
+      const t = await fetch(url).then(r => {
+        if (!r.ok) {
+          throw new Error('Not a 2xx reponse');
+        }
+        return r.text();
+      }).catch(err => console.log('no data found for the provided ticker'))
+      if (t == null) {
+        return [];
+      }
       const lines = t.split('\n');
       data = [];
       let maxColumnLength = 0;
