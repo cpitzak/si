@@ -30,7 +30,15 @@ var tenk = {
       return;
     }
     try {
-      const t = await fetch(url).then(r => r.text());
+      const t = await fetch(url).then(r => {
+        if (!r.ok) {
+          throw new Error('Not a 2xx reponse');
+        }
+        return r.text();
+      }).catch(err => console.log('no data found for the provided ticker'))
+      if (t == null) {
+        return;
+      }
       const lines = t.split('\n');
       const data = {};
       for (let i = 0; i < lines.length; i++) {
@@ -150,7 +158,7 @@ var tenk = {
     }
   },
   buildTable: function (ticker, data) {
-    document.getElementById('title').innerHTML = '<h3>Calculations for Ticker: ' + ticker + '</h3>';
+    document.getElementById('title').innerHTML = '<h3>Calculations for Ticker: ' + ticker.toUpperCase() + '</h3>';
     document.getElementById('result').innerHTML = '';
     const table = document.createElement('table');
     table.className = 'fin-table';
@@ -184,6 +192,9 @@ var tenk = {
     const incomeData = await tenk.load(incomeUrl);
     const balanceData = await tenk.load(balanceUrl);
     const cashData = await tenk.load(cashUrl);
+    if (incomeData == null || balanceUrl == null || cashData == null) {
+      return;
+    }
     const results = [
       ['Computation', 'Desired'],
       ['(Revenue - COGS) / Revenue', '> 40% for past 10 years'],
@@ -207,8 +218,6 @@ var tenk = {
     tenk.buildTable(ticker, results);
   },
   onKeyUpCalc: async function (event) {
-    if (event.keyCode === 13) {
-      tenk.calc(document.getElementById('ticker').value);
-    }
+    tenk.calc(document.getElementById('ticker').value);
   }
 };
