@@ -1,30 +1,29 @@
 var tenk = {
   incomeConstants: {
-    DATE: 'Date',
-    REVENUE: 'Revenue',
-    REVENUE_GROWTH: 'Revenue Growth',
-    COST_OF_REVENUE: 'Cost of Revenue',
-    GROSS_PROFIT: 'Gross Profit',
-    RD_EXPENSES: 'R&D Expenses',
-    SGA_EXPENSE: 'SG&A Expense',
-    OPERATING_EXPENSES: 'Operating Expenses',
-    OPERATING_INCOME: 'Operating Income',
-    INTEREST_EXPENSE: 'Interest Expense',
-    EARNINGS_BEFORE_TAX: 'Earnings before Tax',
-    INCOME_TAX_EXPENSE: 'Income Tax Expense',
-    NET_INCOME: 'Net Income',
-    EPS_DILUTED: 'EPS Diluted'
+    DATE: 'date',
+    REVENUE: 'revenue',
+    COST_OF_REVENUE: 'costOfRevenue',
+    GROSS_PROFIT: 'grossProfit',
+    RD_EXPENSES: 'ResearchAndDevelopmentExpenses',
+    GA_EXPENSE: 'GeneralAndAdministrativeExpenses',
+    SM_EXPENSE: 'SellingAndMarketingExpenses',
+    OPERATING_EXPENSES: 'operatingExpenses',
+    OPERATING_INCOME: 'operatingIncome',
+    INTEREST_EXPENSE: 'interestExpense',
+    INCOME_TAX_EXPENSE: 'incomeTaxExpense',
+    NET_INCOME: 'netIncome',
+    EPS_DILUTED: 'EPSDiluted'
   },
   cashConstants: {
-    DEPRECIATION_AMORTIZATION: 'Depreciation & Amortization',
+    DEPRECIATION_AMORTIZATION: 'depreciationAndAmortization',
     CAPITAL_EXPENDITURE: 'Capital Expenditure'
   },
   balanceConstants: {
-    TAX_ASSETS: 'Tax assets',
-    TOTAL_ASSETS: 'Total assets',
-    TOTAL_LIABILITIES: 'Tax Liabilities',
-    SHAREHOLDER_EQUITY: 'Total shareholders equity',
-    RETAINED_EARNINGS: 'Retained earnings (deficit)'
+    TAX_ASSETS: 'taxAssets',
+    TOTAL_ASSETS: 'totalAssets',
+    TOTAL_LIABILITIES: 'totalLiabilities',
+    SHAREHOLDER_EQUITY: 'totalStockholdersEquity',
+    RETAINED_EARNINGS: 'retainedEarnings'
   },
   load: async function (url) {
     if (!url) {
@@ -35,12 +34,19 @@ var tenk = {
       const lines = t.split('\n');
       const data = {};
       for (let i = 0; i < lines.length; i++) {
-        if (lines[i].indexOf('Property, Plant & Equipment Net') > -1) {
-          lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
-        }
+        // if (lines[i].indexOf('Property, Plant & Equipment Net') > -1) {
+        //   lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
+        // }
         const temp = lines[i].split(',');
         if (temp.length > 1) {
-          data[temp[0]] = temp;
+          if (temp[0] === tenk.incomeConstants.DATE) {
+            temp.splice(1, 1); // remove empty column
+          } else {
+            temp.splice(0, 1); // remove first column
+          }
+          if (temp[0] !== "") {
+            data[temp[0]] = temp;
+          }
         }
       }
       return data;
@@ -70,7 +76,9 @@ var tenk = {
       const gpmPercent = Math.round(grossProftMargin * 10000) / 100;
       results[1].push(gpmPercent + '%');
       // SGA / Gross Profit
-      const sga = parseFloat(incomeData[tenk.incomeConstants.SGA_EXPENSE][i]);
+      const gaExpense = parseFloat(incomeData[tenk.incomeConstants.GA_EXPENSE][i]);
+      const smExpense = parseFloat(incomeData[tenk.incomeConstants.SM_EXPENSE][i]);
+      const sga = gaExpense + smExpense;
       const grossProfit = parseFloat(incomeData[tenk.incomeConstants.GROSS_PROFIT][i]);
       const sgaByGrossProfit = Math.round((sga / grossProfit) * 10000) / 100;
       results[2].push(sgaByGrossProfit + '%');
@@ -92,8 +100,8 @@ var tenk = {
       const operatingExpenses = parseFloat(incomeData[tenk.incomeConstants.OPERATING_EXPENSES][i]);
       const pretaxOperatingIncome = revenue - operatingExpenses - depreciation;
       const incomeTaxByPretaxOperatingIncome = Math.round((incomeTax / pretaxOperatingIncome) * 10000) / 100;
-      // results[6].push(incomeTaxByPretaxOperatingIncome + '%');
-      results[6].push([]);
+      results[6].push(incomeTaxByPretaxOperatingIncome + '%');
+      // results[6].push([]);
       // Net Earnings
       const netEarnings = parseFloat(incomeData[tenk.incomeConstants.NET_INCOME][i]);
       results[7].push((netEarnings / 1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -131,13 +139,13 @@ var tenk = {
         results[13].push(netEarningsByShareholderEquity + '%');
       }
       // Capital Expenditures / Net Earnings
-      const capitalExpenditures = parseFloat(cashData[tenk.cashConstants.CAPITAL_EXPENDITURE][i]);
-      const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
-      if (isNaN(capitalExpendituresByNetEarnings)) {
-        results[14].push([]);
-      } else {
-        results[14].push(capitalExpendituresByNetEarnings + '%');
-      }
+      // const capitalExpenditures = parseFloat(cashData[tenk.cashConstants.CAPITAL_EXPENDITURE][i]);
+      // const capitalExpendituresByNetEarnings = Math.round((capitalExpenditures / netEarnings) * 10000) / 100;
+      // if (isNaN(capitalExpendituresByNetEarnings)) {
+        results[14].push(['no data']);
+      // } else {
+      //   results[14].push(capitalExpendituresByNetEarnings + '%');
+      // }
       results[15].push([]);
     }
   },

@@ -1,16 +1,41 @@
-Date,2018-12-31,2017-12-31,2016-12-31,2015-12-31,2014-12-31
-Depreciation & Amortization,224695000.0,111655000.0,40417000.0,22685000.0,8444000.0
-Stock-based compensation,83346000.0,442976000.0,-14712000.0,0.0,0.0
-Operating Cash Flow,427656000.0,178871000.0,32083000.0,20372000.0,7615000.0
-Capital Expenditure,0.0,0.0,-195425000.0,-110232000.0,-187067000.0
-Acquisitions and disposals,-0.0,-0.0,0.0,0.0,0.0
-Investment purchases and sales,0.0,0.0,0.0,0.0,0.0
-Investing Cash flow,-733219000.0,-600034000.0,-195425000.0,-110232000.0,-187067000.0
-Issuance (repayment) of debt,-0.0,-0.0,110780000.0,19397000.0,0.0
-Issuance (buybacks) of shares,-35229000.0,-9523000.0,0.0,0.0,199800000.0
-Dividend payments,-0.0,-0.0,0.0,0.0,0.0
-Financing Cash Flow,331269000.0,418959000.0,160904000.0,70397000.0,199800000.0
-Effect of forex changes on cash,0.0,0.0,0.0,0.0,0.0
-Net cash flow / Change in cash,25706000.0,-2204000.0,-2438000.0,-19463000.0,20348000.0
-Free Cash Flow,427656000.0,178871000.0,-163342000.0,-89860000.0,-179452000.0
-Net Cash/Marketcap,0.0,0.0,-1.0339,-0.5807,-0.5807
+date,,2018-12-31_FY,2017-12-31_FY
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CashProvidedByOperatingActivites,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,netIncome,165458000.0,-451934000.0
+,depreciationAndAmortization,224695000.0,111655000.0
+,deferredIncomeTax,-66475000.0,-57943000.0
+,stockBasedCompensation,83346000.0,442976000.0
+,changeInWorkingCapital,126564000.0,0.0
+,accountsReceivables,-11273000.0,-40442000.0
+,inventory,0.0,0.0
+,accountsPayables,30768000.0,17424000.0
+,otherWorkingCapital,13152000.0,-113412000.0
+,otherNonCashItems,0.0,0.0
+,netCashProvidedByOperatingActivites,427656000.0,178871000.0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CashProvidedByInvestingActivites,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,investmentsInPropertyPlantAndEquipment,0.0,0.0
+,acquisitionsNet,0.0,0.0
+,purchasesOfInvestments,0.0,0.0
+,salesMaturitiesOfInvestments,0.0,0.0
+,otherInvestingActivites,-733219000.0,-600034000.0
+,netCashUsedForInvestingActivites,-733219000.0,-600034000.0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CashProvidedByFinancingingActivites,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,debtRepayment,0.0,0.0
+,commonStockIssued,0.0,401625000.0
+,commonStockRepurchased,-35229000.0,-9523000.0
+,dividendsPaid,0.0,0.0
+,otherFinancingActivites,366498000.0,428482000.0
+,netCashUsedProvidedByFinancingActivities,331269000.0,418959000.0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,effectOfForexChangesOnCash,0.0,0.0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Cash&CashFlow,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,netChangeInCash,25706000.0,-2204000.0
+,cashAtEndOfPeriod,35229000.0,9523000.0
+,cashAtBeginningOfPeriod,9523000.0,11727000.0
+,operatingCashFlow,427656000.0,178871000.0
+,capitalExpenditure,0.0,0.0
+,freeCashFlow,427656000.0,178871000.0

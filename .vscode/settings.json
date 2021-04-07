@@ -21,5 +21,6 @@
   "prettier.printWidth": 120,
   "peacock.affectActivityBar": true,
   "peacock.affectStatusBar": true,
-  "peacock.affectTitleBar": false
+  "peacock.affectTitleBar": false,
+  "git.ignoreLimitWarning": true
 }
