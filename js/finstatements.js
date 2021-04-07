@@ -7,13 +7,30 @@ var statements = {
       const t = await fetch(url).then(r => r.text());
       const lines = t.split('\n');
       data = [];
+      let maxColumnLength = 0;
       for (let i = 0; i < lines.length; i++) {
-        if (lines[i].indexOf('Property, Plant & Equipment Net') > -1) {
-          lines[i] = lines[i].replace('Property, Plant & Equipment Net', 'Property Plant & Equipment Net');
-        }
         const temp = lines[i].split(',');
+        if (i === 0) {
+          maxColumnLength = temp.length;
+        }
+        // figure out which row had lots of extra columns
+        let emptyLines = 0;
+        for (let j = 2; j < temp.length; j++) {
+          if (temp[j].trim().length === 0) {
+            emptyLines++
+          }
+        }
         if (temp.length > 1) {
-          data.push(temp);
+          // for the row that had lots of extra columns, remove those extra columns
+          if (emptyLines === temp.length - 2) {
+            const titleRow = [temp[0]];
+            for (let k = 1; k < maxColumnLength; k++) {
+              titleRow.push("");
+            }
+            data.push(titleRow);
+          } else {
+            data.push(temp);
+          }
         }
       }
       return data;
